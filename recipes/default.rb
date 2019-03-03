@@ -33,10 +33,16 @@ when 'windows'
         action :install
     end
 
-    %w{IIS-WebServerRole IIS-WebServer}.each do |feature|
-        windows_feature feature do
-            action :install
-        end
+#    %w{IIS-WebServerRole IIS-WebServer}.each do |feature|
+#        windows_feature feature do
+#            action :install
+#    #        install_method :windows_feature_powershell
+#        end
+#    end
+
+    iis_install 'install IIS' do
+        additional_components node['iis']['components']
+        source node['iis']['source']
     end
 
     service 'iis' do
