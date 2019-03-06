@@ -14,7 +14,16 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
+    driver:
+        network: 
+            - ["forwarded_port", {guest: 80, host: 8080}] 
+            - ["private_network", {ip: "192.168.33.180"}]
+
   - name: centos-7 
+    driver:
+        network: 
+            - ["forwarded_port", {guest: 80, host: 8181}] 
+            - ["private_network", {ip: "192.168.33.181"}]
   - name: win2012r2 
     driver: 
         vm_hostname: chef-win1 
@@ -24,8 +33,8 @@ platforms:
             cpus: 2 
             memory: 2048 
         network: 
-            - ["forwarded_port", {guest: 80, host: 8080}] 
-            - ["private_network", {ip: "192.168.33.195"}]
+            - ["forwarded_port", {guest: 80, host: 8282}] 
+            - ["private_network", {ip: "192.168.33.183"}]
 suites:
   - name: default
     run_list:
@@ -34,4 +43,3 @@ suites:
       inspec_tests:
         - test/integration/default
     attributes: 
-        customer: NTUC Income
