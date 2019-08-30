@@ -4,7 +4,7 @@ maintainer_email 'tio@chef.io'
 license 'All Rights Reserved'
 description 'Installs/Configures mywindows'
 long_description 'Installs/Configures mywindows'
-version '0.1.0'
+version '0.1.1'
 chef_version '>= 12.14' if respond_to?(:chef_version)
 
 depends 'iis', '>= 7.2.0'
