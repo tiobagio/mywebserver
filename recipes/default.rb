@@ -20,6 +20,10 @@ when 'linux'
         source 'index.html.erb'
     end
 
+    template '/etc/nginx/conf.d/default.conf' do  # custom configuration
+        source 'default.conf.erb'
+    end
+
 when 'windows'
     node.default['webserver'] = "IIS"
 
