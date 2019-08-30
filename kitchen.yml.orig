@@ -1,0 +1,48 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  product_name: chef
+  product_version: 14.12.3
+  chef_license: accept
+  # You may wish to disable always updating cookbooks in CI or other testing environments.
+  # For example:
+  #   always_update_cookbooks: <%= !ENV['CI'] %>
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-16.04
+    driver:
+        network: 
+            - ["forwarded_port", {guest: 80, host: 8080}] 
+            - ["private_network", {ip: "192.168.33.180"}]
+
+  - name: centos-7 
+    driver:
+        network: 
+            - ["forwarded_port", {guest: 80, host: 8181}] 
+            - ["private_network", {ip: "192.168.33.181"}]
+  - name: win2012r2 
+    driver: 
+        vm_hostname: chef-win1 
+        box : tas50/windows_2012r2
+        #        box: mwrock/Windows2012R2 
+        customize: 
+            cpus: 2 
+            memory: 2048 
+        network: 
+            - ["forwarded_port", {guest: 80, host: 8282}] 
+            - ["private_network", {ip: "192.168.33.183"}]
+suites:
+  - name: default
+    run_list:
+      - recipe[mywebserver::default]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes: 

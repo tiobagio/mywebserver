@@ -30,18 +30,18 @@ verifier:
   format: documentation
 
 platforms:
-  - name: ubuntu-1604
-    transport:
-      username: ubuntu
-      ssh_key: ~/.ssh/bagio-training.pem
-    driver:
-      #image_id: ami-03746875d916becc0
-      image_search:
-        owner-id: "099720109477"
-        name: "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170414"
-    driver_config:
-      user_data: ./kitchen_user_data
-
+#  - name: ubuntu-1604
+#    transport:
+#      username: ubuntu
+#      ssh_key: ~/.ssh/bagio-training.pem
+#    driver:
+#      #image_id: ami-03746875d916becc0
+#      image_search:
+#        owner-id: "099720109477"
+#        name: "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170414"
+#    driver_config:
+#      user_data: ./kitchen_user_data
+#
   - name: centos-6
     transport:
       username: centos
