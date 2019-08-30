@@ -1,0 +1,13 @@
+#!/bin/bash
+echo 'Defaults:centos !requiretty' > /etc/sudoers.d/888-centos-cloud-init-requiretty
+setenforce 0
+echo -e "SELINUX=disabled\nSELINUXTYPE=targeted\nSETLOCALDEFS=0" > /etc/sysconfig/selinux
+service iptables stop
+chkconfig iptables off
+
+cat >> "/etc/hosts" << EOF
+172.31.54.200   aut-compliance-server aut-compliance-server.chef-demo.com
+172.31.54.57    aut-chef-server aut-chef-server.chef-demo.com
+172.31.54.22    aut-automate-server aut-automate-server.chef-demo.com
+172.31.54.22    aut-workflow-server aut-workflow-server.chef-demo.com
+EOF
