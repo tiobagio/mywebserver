@@ -12,16 +12,17 @@ when 'linux'
 
     package "nginx"
 
-    service "nginx" do
-        action [:enable, :start]
-    end
-
     template '/usr/share/nginx/html/index.html' do  # custom content
         source 'index.html.erb'
     end
 
     template '/etc/nginx/conf.d/default.conf' do  # custom configuration
         source 'default.conf.erb'
+        notifies :restart, 'service[nginx]'
+    end
+
+    service "nginx" do
+        action [:enable, :start]
     end
 
 when 'windows'
