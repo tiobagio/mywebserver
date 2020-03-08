@@ -9,14 +9,14 @@ driver:
   instance_type: t2.micro
   tags:
     # Replace YOURNAME and YOURCOMPANY here
-    Name: "<tbagio> Training Node"
-    X-Contact: "Tio Bagio"
+    Name: "YOURNAME-node"
+    X-Contact: "tbagio@chef.io"
     X-Application: "apac"
     X-Dept: "sales"
     X-Customer: "apjcorp"
     X-Project: "training"
     X-Termination-Date: "2019-09-20T12:04:30Z"
-    X-TTL: 4
+    X-TTL: 40
 
 provisioner:
   name: chef_zero
